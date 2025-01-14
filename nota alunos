@@ -1,36 +1,48 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    // Média de notas
-    float notas[5];
+struct Aluno{
+    string nome;
+    int idade;
+    int anoEscolar;
+    float nota;
+};
+
+int main(){
+    const int maximo = 20;
+    Aluno aluno[maximo];
+    int numAluno;
+    
+    cout << "Quantos alunos queres registrar? max " << maximo << ": " << endl;
+    cin >> numAluno;
+    if(numAluno > maximo) numAluno = maximo;
+    
+    for(int i = 0; i < numAluno; i++){
+        cout << "-----------------------------" << endl;
+        cout << "Dados para o aluno " << i + 1 << ": " << endl;
+        cout << "Nome: ";
+        cin >> aluno[i].nome;
+        cout << "Idade: ";
+        cin >> aluno[i].idade;
+        cout << "Ano da escola: ";
+        cin >> aluno[i].anoEscolar;
+        cout << "Nota: ";
+        cin >> aluno[i].nota;
+    }
+    
     float soma = 0;
-    float media;
-    
-    for (int i = 0; i < 5; i++) {
-        cout << "Nota do aluno " << i + 1 << ": ";
-        cin >> notas[i];
-        soma += notas[i];
+    for(int i = 0; i < numAluno; i++){
+        soma += aluno[i].nota;
     }
+    cout << "Média: " << (soma / numAluno) << endl;
+    cout << "-----------------------------" << endl;
     
-    media = soma / 5;
-    
-    cout << "A média: " << media << endl;
-    
-    float maiorNota = notas[0];
-    float menorNota = notas[0];
-    
-    for (int i = 1; i < 5; i++) {
-        if (notas[i] > maiorNota) {
-            maiorNota = notas[i];
-        }
-        if (notas[i] < menorNota) {
-            menorNota = notas[i];
-        }
+    for(int i = 0; i < numAluno; i++){
+        cout << "Nome: " << aluno[i].nome << endl;
+        cout << "Idade: " << aluno[i].idade << endl;
+        cout << "Ano da escola: " << aluno[i].anoEscolar << endl;
+        cout << "Nota: " << aluno[i].nota << endl;
+        cout << "-----------------------------" << endl;
     }
-    
-    cout << "maior nota: " << maiorNota << endl;
-    cout << "menor nota: " << menorNota << endl;
-    
-    return 0;
+return 0;
 }
